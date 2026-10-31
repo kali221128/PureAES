@@ -1,0 +1,5 @@
+cpu_check.c：用 CPUID 检测 CPU 是否支持 AES-NI，打印 `YES/NO`，决定后面走硬件还是软件路径的依据
+test_aes.c：用 NIST 标准向量逐字节比对 8 种模式（ECB/CBC/CTR/OFB/CFB8/CFB128/GCM/CCM）+ 填充 + 密钥生成 + 文件加解密
+xts_probe.c：XTS 专项验证：100 字节多块、3 字节短块、双密钥、单密钥四种场景往返比对（`test_aes.c` 不覆盖 XTS）tiny_sw.c：强制纯软件路径：`ctx.hw_flags = 0`，专门验证 C 实现
+tiny_hw.c：强制硬件 (AES-NI) 路径：专门验证指令集实现
+smoke.c：冒烟测试：ECB 单块 FIPS 向量 + **正好 64KB 的 CBC**（4096 块精确分块边界），验证批量路径的临界点

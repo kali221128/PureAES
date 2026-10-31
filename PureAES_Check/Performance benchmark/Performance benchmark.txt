@@ -1,0 +1,1 @@
+bench_all.c：全模式基准（纯软件路径）：用 8MB 数据 + `QueryPerformanceCounter` 高精度计时，测每个模式加密 / 解密的 MB/s
